@@ -1,0 +1,42 @@
+---
+title: "Project Proposal"
+author: 'Info 201 BF 2: Jiafei Li, Erica Tan, Khalifa Al-Maslamani, Kyryll Keydanskyy,
+  Igor Podgorny'
+date: "3/1/2019"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+## Project Description
+
+
+- **What is the dataset you'll be working with?  Please include background on who collected the data, where you accessed it, and any additional information we should know about how this data came to be.**
+    - The dataset which we chose to work with is the [McDonalds Menu Nutritional summary](https://github.com/pffy/data-mcdonalds-nutritionfacts). The information was compiled by a user on GitHub by the name of “pffy”, using data available on the McDonald’s website, updated as of July 2018. McDonalds provides nutritional information about all of their products in a .pdf format on their website, which is then compiled into a dataset with information about individual menu item. 
+  
+- **Who is your target audience?  Depending on the domain of your data, there may be a variety of audiences interested in using the dataset.  You should hone in on one of these audiences.**
+    - Healthy eaters who like to binge at McDonald’s occasionally or anyone who is curious about the nutrition values of their food when they order at McDonalds.
+  
+- **What does your audience want to learn from your data?  Please list out at least 3 specific questions that your project will answer for your audience.**
+    - Our audience can learn the nutrition values about their McDonalds’ orders and adjust their meal base on their diet and be more health-conscious base on this information. The three questions this project will answer to our audiences are:
+        - Which items should you order at mcDonalds’ (most nutritious) in each of the following category: breakfast, dessert, Salads, Snacks & Sides, burgers?
+        - Is it possible to satisfy an adult man’s daily suggested nutritional intake if he was to only eat McDonalds’? What values exceeds the recommended amount and what values fall behind the recommended amount?
+        - What are the average protein, fat, and calories from mcDonalds’ burgers?
+        - How does a McDonald's beverage, meal, etc. fit with one’s dietary restrictions?
+    
+    
+## Technical Description
+
+
+- **How will you be reading in your data (i.e., are you using an API, or is it a static .csv/.json file)?**
+    - We will read this dataset as a csv file.
+- **What types of data-wrangling (reshaping, reformatting, etc.) will you need to do to your data?**
+    - We will be reshaping the data in order to display information that is relevant to our audience. We will be taking the columns and displaying them in an organized and efficient manner that will help the audience find what they are looking for.
+        - Information will be ordered by food type, serving sizes, and other nutritional information for each item on the menu
+- **What (major/new) libraries will be using in this project (no need to list common libraries that are used in many projects such as dplyr)**
+    - Some major libraries we will be using include `ggplot2`, `httr`, `eeptools`, `knitr`, `lubridate`, `ggmap`, and `htmltools`. 
+- **What major challenges do you anticipate? **
+    - Some major challenges we anticipate include choosing what kind of charts to efficiently display nutritional information for each food item that will help the audience find what what they are looking for (rather than listing all the nutritional information next to the menu items).
+    - Another challenge we anticipate includes finding the right tools in order recommend to our audience a food item that meets their dietary preferences/restrictions.
