@@ -7,7 +7,7 @@ library(ggplot2)
 
 # Define UI for application that draws a histogram
 shinyUI(
-  fluidPage(
+  fluidPage( theme = shinytheme("united"),
 
     # Tab page one
     tabPanel(
