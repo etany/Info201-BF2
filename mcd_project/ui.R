@@ -18,7 +18,7 @@ nutr_cats <- c("Calories" = "CAL",
                "Fiber" = "FBR",
                "Sugar" = "SGR",
                "Protein" = "PRO",
-               "Category" = "CATEEGORY")
+               "Category" = "CATEGORY")
 
 # Define UI for application that draws a histogram
 shinyUI(
