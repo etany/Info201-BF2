@@ -109,8 +109,20 @@ shinyUI(
       # Tab label
       "about",
       # Application title
-      titlePanel("About"),
+      titlePanel("About us"),
       hr(),
+      h2("This project is brought to you by a group of Univeristy of Washington students enrolled in Info201."),
+      h3(" Our team members include: "),
+      h4("Jiafei Li"),
+      h6( "Jiafei is a senior student pursuing Sociolgy and minoring in Infomatics." ),
+      h4("Erica Tan"),
+      h6( "Erica is a senior student pursuing Sociolgy and minoring in Infomatics."),
+      h4("Khalifa Al-Maslamani"),
+      h6(""),
+      h4("Kyryll Keydansky"),
+      h6(""),
+      h4("Igor Podgorny"),
+      h6(""),
       p(em("This project is in the process of being built"))
     )
   )
