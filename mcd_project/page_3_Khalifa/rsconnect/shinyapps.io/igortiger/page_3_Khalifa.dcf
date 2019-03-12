@@ -1,0 +1,13 @@
+name: page_3_Khalifa
+title: page_3_Khalifa
+username:
+account: igortiger
+server: shinyapps.io
+hostUrl: https://api.shinyapps.io/v1
+appId: 784388
+bundleId: 1933984
+url: https://igortiger.shinyapps.io/page_3_Khalifa/
+when: 1552408097.89474
+asMultiple: FALSE
+asStatic: FALSE
+ignoredFiles: .Rapp.history
