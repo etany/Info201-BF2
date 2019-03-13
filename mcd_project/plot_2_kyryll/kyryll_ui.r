@@ -27,7 +27,7 @@ dv_nutr_cats <- c("Calories" = "dvCAL",
                   "Protein" = "dvPRO"
 )
 
-all_menu_items <- unique(mcd_df$ITEM)
+all_menu_items <- unique(mcd_df$"Item")
 
 ui <- fluidPage( theme = shinytheme("united"),
              # Tab page one
