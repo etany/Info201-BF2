@@ -4,20 +4,21 @@
 library(shiny)
 library(dplyr)
 library(ggplot2)
+library(shinythemes)
 
 
 # Assigning full names to the nutritional categories
 
 nutr_cats <- c("Calories" = "CAL",
-               "Fat" = "FAT",
-               "Saturated Fat" = "SFAT",
-               "Trans Fat" = "TFAT",
-               "Cholesterol" = "CHOL",
-               "Salt" = "SALT",
-               "Carbohydrates" = "CARB",
-               "Fiber" = "FBR",
-               "Sugar" = "SGR",
-               "Protein" = "PRO",
+               "Fat (g)" = "FAT",
+               "Saturated Fat (g)" = "SFAT",
+               "Trans Fat (g)" = "TFAT",
+               "Cholesterol (mg)" = "CHOL",
+               "Sodium (mg)" = "SALT",
+               "Carbohydrates (g)" = "CARB",
+               "Fiber (g)" = "FBR",
+               "Sugar  (g)" = "SGR",
+               "Protein (g)" = "PRO",
                "Category" = "CATEGORY")
 
 # Define UI for application that draws a histogram

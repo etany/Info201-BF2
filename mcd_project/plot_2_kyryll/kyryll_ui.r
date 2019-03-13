@@ -11,7 +11,7 @@ nutr_cats <- c("Calories" = "CAL",
                "Sodium (mg)" = "SALT",
                "Carbohydrates (g)" = "CARB",
                "Fiber (g)" = "FBR",
-               "Sugar  (g)" = "SGR",
+               "Sugar (g)" = "SGR",
                "Protein (g)" = "PRO",
                "Category" = "CATEGORY")
 
