@@ -11,12 +11,6 @@ library(dplyr)
 
 plot_by_fat <- function(data, x_input, totalfat_input) {
 
-  # Rename the columns in the data
-  colnames(data)[2:12] <- c("Calories", "Fat", "Saturated Fat", "Trans Fat",
-                            "Cholesterol", "Salt", "Carbohydrates", "Fiber",
-                            "Sugar", "Protein", "Category"
-                            )
-
   # Store x values to plot
   x <- data[[x_input]]
 
