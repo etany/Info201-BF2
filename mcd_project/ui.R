@@ -6,24 +6,30 @@ library(dplyr)
 library(ggplot2)
 library(plotly)
 
+# Read in McDonald's data
+mcd_df <- read.csv("./data/mcd35.csv", stringsAsFactors = F)
 
-# Assigning full names to the nutritional categories
+# Rename columns with full names
+mcd_df <- mcd_df %>%
+  select("Item" = "ITEM",
+         "Calories" = "CAL",
+         "Fat" = "FAT",
+         "Saturated Fat" = "SFAT",
+         "Trans Fat" = "TFAT",
+         "Cholesterol" = "CHOL",
+         "Salt" = "SALT",
+         "Carbohydrates" = "CARB",
+         "Fiber" = "FBR",
+         "Sugar" = "SGR",
+         "Protein" = "PRO",
+         "Category" = "CATEGORY"
+  )
 
-nutr_cats <- c("Calories" = "CAL",
-               "Fat" = "FAT",
-               "Saturated Fat" = "SFAT",
-               "Trans Fat" = "TFAT",
-               "Cholesterol" = "CHOL",
-               "Salt" = "SALT",
-               "Carbohydrates" = "CARB",
-               "Fiber" = "FBR",
-               "Sugar" = "SGR",
-               "Protein" = "PRO",
-               "Category" = "CATEGORY")
+# Define UI
+shinyUI(navbarPage(
 
-# Define UI for application that draws a histogram
-shinyUI(
-  fluidPage(theme = shinytheme("united"),
+    # App title
+    "McDonald's Nutritional Information",
 
     # Tab page one
     tabPanel(
@@ -37,27 +43,27 @@ shinyUI(
         sidebarPanel(
           # Sidebar code goes here
           selectInput(
-            "x_var",
+            inputId = "x_nutr_all",
             label = "Select a nutrition",
             choices = list(
-              "Calories" = "CAL", 
-              "Fat" = "FAT",
-              "Saturated Fat" = "SFAT",
-              "Trans Fat" = "TFAT",
-              "Chloride" = "CHOL",
-              "Salt" = "SALT",
-              "Carbon" = "CARB",
-              "Fiber" = "FBR",
-              "Sugar" = "SGR",
-              "Protein" = "PRO"
+              "Calories",
+              "Fat",
+              "Saturated Fat",
+              "Trans Fat",
+              "Cholesterol",
+              "Salt",
+              "Carbohydrates",
+              "Fiber",
+              "Sugar",
+              "Protein"
             )
           ),
-          
+
           selectInput(
             "cat_var",
             label = "Select a category",
             choices = list(
-              "Burger" = "BURGER", 
+              "Burger" = "BURGER",
               "Chicken" = "CHICKEN",
               "Breakfast" = "BREAKFAST",
               "Salad" = "SALAD",
@@ -88,7 +94,7 @@ shinyUI(
     # Tab page two
     tabPanel(
       # Tab label
-      "",
+      "tabTwo",
       # Application title
       titlePanel("panelTitle"),
 
@@ -105,22 +111,49 @@ shinyUI(
       )
     ),
 
-    # Tab page three
+    # Page three plot nutrition by total fat
     tabPanel(
       # Tab label
-      "",
-      # Application title
-      titlePanel("panelTitle"),
+      "Total Fat vs. Nutrition",
+      # Add a titlePanel to your tab
+      titlePanel("Select Data"),
 
-      # Sidebar
+      # Create a sidebar layout for this tab (page)
       sidebarLayout(
+
+        # Create a sidebarPanel for your controls
         sidebarPanel(
-          # Sidebar code goes here
+
+          # Make a sliderInput widget for looking at a specified total fat range
+          sliderInput(inputId = "totalfat",
+                      label = "Select Total Fat Range",
+                      min = min(mcd_df$Fat),
+                      max = max(mcd_df$Fat),
+                      value = c(min(mcd_df$Fat),
+                                max(mcd_df$Fat)
+                                )
+                      ),
+
+          # Add dropdown to select nutrition variable for x axis
+          selectInput(
+            inputId = "x_nutr_fat",
+            label = "Choose Nutrition Variable to Plot Against Total Fat",
+            choices = list(
+              "Total Saturated Fats" = "Saturated Fat",
+              "Total Trans Fats" = "Trans Fat",
+              "Total Cholesterol" = "Cholesterol",
+              "Total Salt" = "Salt",
+              "Total Carbohydrates" = "Carbohydrates",
+              "Total Fiber" = "Fiber",
+              "Total Sugar" = "Sugar",
+              "Total Protein" = "Protein"
+            )
+          )
         ),
 
-        # Shows graphic in main panel of tab
+        # Display scatter plot on main panel
         mainPanel(
-          plotOutput("thirdPlot")
+          plotOutput("scatter")
         )
       )
     ),
@@ -128,7 +161,7 @@ shinyUI(
     # Tab page four
     tabPanel(
       # Tab label
-      "",
+      "tabFour",
       # Application title
       titlePanel("panelTitle"),
 
@@ -166,5 +199,4 @@ shinyUI(
       h6(""),
       p(em("This project is in the process of being built"))
     )
-  )
-)
+))
