@@ -3,6 +3,8 @@ library(dplyr)
 library(ggplot2)
 library(shinythemes)
 
+mcd_df <- read.csv("../data/mcd35.csv", stringsAsFactors = F)
+
 nutr_cats <- c("Calories" = "CAL",
                "Fat (g)" = "FAT",
                "Saturated Fat (g)" = "SFAT",
