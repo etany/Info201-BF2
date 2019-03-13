@@ -12,6 +12,10 @@ source("plot_by_fat.R")
 # Load in the data
 data <- read.csv("mcd35.csv", stringsAsFactors = F)
 
+# Rename the columns in the data
+colnames(data)[2:12] <- c("Calories", "Fat", "Saturated Fat", "Trans Fat",
+                          "Cholesterol", "Salt", "Carbohydrates", "Fiber",
+                          "Sugar", "Protein", "Category")
 
 # Start a shinyServer that creates a scatterplot
 # It should use an `input` with features: `x_var`
