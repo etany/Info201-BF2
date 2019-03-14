@@ -120,7 +120,7 @@ shinyUI(navbarPage(
                          label = "Nutritional Categories",
                          choices = dv_nutr_cats,
                          multiple = T,
-                         selected = dv_nutr_cats[1])
+                         selected = dv_nutr_cats[c(1, 2, 6)])
         ),
         # Shows graphic in main panel of tab
         mainPanel(
@@ -139,54 +139,53 @@ shinyUI(navbarPage(
                      highlighted in red. ")
         )
       )
+    ),
+    # Page three plot nutrition by total fat
+    tabPanel(
+      # Tab label
+      "Total Fat vs. Nutrition",
+      # Add a titlePanel to your tab
+      titlePanel("Select Data"),
+
+      # Create a sidebar layout for this tab (page)
+      sidebarLayout(
+
+        # Create a sidebarPanel for your controls
+        sidebarPanel(
+
+          # Make a sliderInput widget for looking at a specified total fat range
+          sliderInput(inputId = "totalfat",
+                      label = "Select Total Fat Range",
+                      min = min(mcd_df$"Fat (g)"),
+                      max = max(mcd_df$"Fat (g)"),
+                      value = c(min(mcd_df$"Fat (g)"),
+                                max(mcd_df$"Fat (g)")
+                                )
+                      ),
+
+          # Add dropdown to select nutrition variable for x axis
+          selectInput(
+            inputId = "x_nutr_fat",
+            label = "Choose Nutrition Variable to Plot Against Total Fat",
+            choices = list(
+              "Total Saturated Fats" = "Saturated Fat (g)",
+              "Total Trans Fats" = "Trans Fat (g)",
+              "Total Cholesterol" = "Cholesterol (mg)",
+              "Total Salt" = "Sodium (mg)",
+              "Total Carbohydrates" = "Carbohydrates (g)",
+              "Total Fiber" = "Fiber (g)",
+              "Total Sugar" = "Sugar (g)",
+              "Total Protein" = "Protein (g)"
+            )
+          )
+        ),
+
+        # Display scatter plot on main panel
+        mainPanel(
+          plotOutput("scatter")
+        )
+      )
     )
-)
-    # # Page three plot nutrition by total fat
-    # tabPanel(
-    #   # Tab label
-    #   "Total Fat vs. Nutrition",
-    #   # Add a titlePanel to your tab
-    #   titlePanel("Select Data"),
-    # 
-    #   # Create a sidebar layout for this tab (page)
-    #   sidebarLayout(
-    # 
-    #     # Create a sidebarPanel for your controls
-    #     sidebarPanel(
-    # 
-    #       # Make a sliderInput widget for looking at a specified total fat range
-    #       sliderInput(inputId = "totalfat",
-    #                   label = "Select Total Fat Range",
-    #                   min = min(mcd_df$"Fat (g)"),
-    #                   max = max(mcd_df$"Fat (g)"),
-    #                   value = c(min(mcd_df$"Fat (g)"),
-    #                             max(mcd_df$"Fat (g)")
-    #                             )
-    #                   ),
-    # 
-    #       # Add dropdown to select nutrition variable for x axis
-    #       selectInput(
-    #         inputId = "x_nutr_fat",
-    #         label = "Choose Nutrition Variable to Plot Against Total Fat",
-    #         choices = list(
-    #           "Total Saturated Fats" = "Saturated Fat (g)",
-    #           "Total Trans Fats" = "Trans Fat (g)",
-    #           "Total Cholesterol" = "Cholesterol (mg)",
-    #           "Total Salt" = "Sodium (mg)",
-    #           "Total Carbohydrates" = "Carbohydrates (g)",
-    #           "Total Fiber" = "Fiber (g)",
-    #           "Total Sugar" = "Sugar (g)",
-    #           "Total Protein" = "Protein (g)"
-    #         )
-    #       )
-    #     ),
-    # 
-    #     # Display scatter plot on main panel
-    #     mainPanel(
-    #       plotOutput("scatter")
-    #     )
-    #   )
-    # ),
 
     # # Tab page four
     # tabPanel(
@@ -229,5 +228,4 @@ shinyUI(navbarPage(
     #   h6(""),
     #   p(em("This project is in the process of being built"))
     # )
-)
-
+))

@@ -100,28 +100,27 @@ shinyServer(function(input, output) {
     ggplotly(plot, tooltip = "text")
   })
 
-  # output$scatter <- renderPlot({
-  #   # Store x values to plot
-  #   x <- mcd_df[[input$x_nutr_fat]]
-  # 
-  #   # Create a ggplot scatter
-  #   p <- ggplot(mcd_df, aes(x = x, y = mcd_df$"Fat (g)")) +
-  #     geom_point(aes(col = Category, size = Calories)) +
-  #     ylim(c(min(mcd_df$"Fat (g)"), max(mcd_df$"Fat (g)"))) +
-  #     labs(
-  #       x = input$x_nutr_fat,
-  #       y = "Total Fat (grams)",
-  #       title = "Scatter Plot",
-  #       subtitle = paste0("McDonald's Dataset: Total Fat vs. Total ",
-  #                         input$x_nutr_fat
-  #                         ),
-  #       caption = "Source: McDonald's"
-  #     ) +
-  #     scale_y_continuous(limits = input$totalfat) +
-  #     theme(legend.key = element_blank(), legend.key.size = unit(11, "point"))
-  # 
-  #   return(p)
-  # })
+  output$scatter <- renderPlot({
+    # Store x values to plot
+    x <- mcd_df[[input$x_nutr_fat]]
+
+    # Create a ggplot scatter
+    p <- ggplot(mcd_df, aes(x = x, y = mcd_df$"Fat (g)")) +
+      geom_point(aes(col = mcd_df$"Category", size = mcd_df$"Calories")) +
+      ylim(c(min(mcd_df$"Fat (g)"), max(mcd_df$"Fat (g)"))) +
+      labs(
+        x = input$x_nutr_fat,
+        y = "Total Fat (g)",
+        title = paste0("McDonald's Dataset: Total Fat vs. Total ",
+                       input$x_nutr_fat
+                       ),
+        caption = "Source: McDonald's"
+      ) +
+      scale_y_continuous(limits = input$totalfat) +
+      theme(legend.key = element_blank(), legend.key.size = unit(11, "point"))
+
+    return(p)
+  })
 
   # output$fourthPlot <- renderPlot({
   #   # Make a function in a separate file in scripts folder and call it here.
