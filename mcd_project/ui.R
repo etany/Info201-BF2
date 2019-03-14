@@ -206,7 +206,6 @@ shinyUI(navbarPage(theme = shinytheme("united"),
                              )
                )
       ),
-
       DT::dataTableOutput("table")
       ),
 
