@@ -82,6 +82,7 @@ shinyServer(function(input, output) {
       )
     data_dv
   })
+
   # Creating the plot
   output$dv_plot_2 <- renderPlotly({
     plot <- ggplot(filtered_dv()) +
