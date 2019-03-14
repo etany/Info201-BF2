@@ -1,4 +1,3 @@
 # Info201-BF2
-
-## Project Proposal
-https://github.com/etany/Info201-BF2/blob/master/project_proposal.html
+ 
+ By Igor Podgorny, Erica Tan, Jiafei Li, Khalifa Al-Maslamani, and Kyryll Keydanskyy
