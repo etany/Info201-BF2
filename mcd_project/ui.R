@@ -7,6 +7,7 @@ library(dplyr)
 library(ggplot2)
 library(plotly)
 library(tidyr)
+library(DT)
 
 # Read in McDonald's data
 mcd_df <- read.csv("./data/mcd35.csv", stringsAsFactors = F)
@@ -201,7 +202,7 @@ shinyUI(navbarPage(theme = shinytheme("united"),
       fluidRow(
         column(3, selectInput("category",
                               "Category:",
-                              c("All", unique(as.character(category))
+                              c("All", unique(as.character("Category"))
                                 )
                              )
                )
@@ -216,26 +217,28 @@ shinyUI(navbarPage(theme = shinytheme("united"),
       # Application title
       titlePanel("About us"),
       hr(),
-      p("This project is brought to you by a group of Univeristy of Washington
-        students enrolled in Info201.",
+      p("This project is created by a group of Univeristy of Washington
+        students enrolled in Informatics 201.",
         br(),
         h3(" Our team members:"),
+        hr(),
         h4("Jiafei Li"),
         "Jiafei is a senior student pursuing Psychology and minoring in
-        Infomatics.", br(),
+        Informatics.", br(),
         br(),
         h4("Erica Tan"),
         "Erica is a senior student pursuing Sociolgy and minoring in
         Infomatics.", br(),
         br(),
         h4("Khalifa Al-Maslamani"),
-        "",
+        "Khalifa is a junior student pursuing Economics.", br(),
+        br(),
         h4("Kyryll Keydanskyy"),
-        "Kyryll is junior pursuing Biochemistry",
-        br(), br(),
+        "Kyryll is junior pursuing Biochemistry", br(),
+        br(),
         h4("Igor Podgorny"),
-        "Igor is majoring in Geography with a focus on Geography Information
-        Systems and a minor in Informatics"
+        "Igor is majoring in Geography with a focus on Geography ", br(),
+        "Information Systems while aslo pursuing a minor in Informatics"
         )
     )
 ))
