@@ -49,7 +49,7 @@ shinyUI(navbarPage(theme = shinytheme("united"),
     # Tab page one
     tabPanel(
       # Tab label
-      "Nutrition for all items",
+      "Nutrition For All Items",
       # Application title
       titlePanel("Nutrition for all items"),
 
@@ -117,30 +117,35 @@ shinyUI(navbarPage(theme = shinytheme("united"),
         sidebarPanel(
           selectInput("item_selected",
                       label = "Food Item",
-                      choices = all_menu_items),
+                      choices = all_menu_items
+                      ),
           selectizeInput("cat_selected",
                          label = "Nutritional Categories",
                          choices = dv_nutr_cats,
                          multiple = T,
-                         selected = dv_nutr_cats[c(1, 2, 6)])
+                         selected = dv_nutr_cats[c(1, 2, 6)]
+                         )
         ),
         # Shows graphic in main panel of tab
         mainPanel(
           h3("Comparison Between the Nutritional Value of
-                      McDonalds Items and the Suggested Daily Value*"),
+             McDonalds Items and the Suggested Daily Value*"
+             ),
           plotlyOutput("dv_plot_2"),
           p(em("*As Specified by the FDA Based on a 2,000 Calorie
-                        Intake for Adults and Children 4 or More Years of Age.",
+               Intake for Adults and Children 4 or More Years of Age.",
                a("Source",
                  href = "https://www.fda.gov/ICECI/Inspections/
-                          InspectionGuides/ucm114098.htm#ATTACHMENT_8"))),
+                          InspectionGuides/ucm114098.htm#ATTACHMENT_8"
+                 )
+            )),
           p("This plot serves to show what portion of the total daily
-                     nutritional value each single item from the McDonalds menu
-                     satisfies. If an item’s particular nutritional category
-                     exceeds the suggested daily intake, then it is
-                     highlighted in red. ")
+            nutritional value each single item from the McDonalds menu
+            satisfies. If an item’s particular nutritional category exceeds
+            the suggested daily intake, then it is highlighted in red. "
+            )
+          )
         )
-      )
     ),
     # Page three plot nutrition by total fat
     tabPanel(
@@ -178,7 +183,7 @@ shinyUI(navbarPage(theme = shinytheme("united"),
               "Total Fiber" = "Fiber (g)",
               "Total Sugar" = "Sugar (g)",
               "Total Protein" = "Protein (g)"
-            )
+              )
           )
         ),
 
@@ -192,18 +197,21 @@ shinyUI(navbarPage(theme = shinytheme("united"),
     # Tab page four
     tabPanel(
       # Tab label
-      "Table for McDonalds' items",
+      "Table For McDonalds' Items",
       # Application title
-      titlePanel(title=div(tags$img(src = "logo.png", height = "35px"),
-                           "Table for McDonald's items")),
+      titlePanel(title = div(tags$img(src = "logo.png",
+                                      height = "35px"
+                                      ),
+                             "Table for McDonald's items"
+                             )
+                 ),
 
 
       # Create a new Row in the UI for selectInputs
       fluidRow(
         column(3, selectInput("category",
                               "Category:",
-                              c("All", unique(as.character("Category"))
-                                )
+                              c("All", unique(as.character("Category")))
                              )
                )
       ),
