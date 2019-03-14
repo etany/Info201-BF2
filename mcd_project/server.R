@@ -8,8 +8,6 @@ library(ggplot2)
 library(plotly)
 library(tidyr)
 
-#source("page_3_Khalifa/plot_by_fat.R")
-
 # Read in McDonald's data
 mcd_df <- read.csv("./data/mcd35.csv", stringsAsFactors = F)
 
@@ -50,8 +48,10 @@ shinyServer(function(input, output) {
       distinct(Item, .keep_all = T) %>%
       # Calculating the percentage dv of each nutritional category for the
       # selected menu item.Values from the FDA:
+      # *
       # www.fda.gov/ICECI/Inspections/InspectionGuides/
       # ucm114098.htm#ATTACHMENT_8
+      # *
       mutate(
         dvCAL = (round(.$"Calories" / 2000, digits = 2)) * 100,
         dvFAT = (round(.$"Fat (g)" / 65, digits = 2)) * 100,
@@ -133,4 +133,3 @@ shinyServer(function(input, output) {
   }))
 
 })
-
