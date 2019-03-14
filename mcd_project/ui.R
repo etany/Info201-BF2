@@ -216,17 +216,26 @@ shinyUI(navbarPage(theme = shinytheme("united"),
       # Application title
       titlePanel("About us"),
       hr(),
-      h3("This project is brought to you by a group of Univeristy of Washington students enrolled in Info201."),
-      h4(" Our team members include: "),
-      h4("Jiafei Li"),
-      h6( "Jiafei is a senior student pursuing Psychology and minoring in Infomatics." ),
-      h4("Erica Tan"),
-      h6( "Erica is a senior student pursuing Sociolgy and minoring in Infomatics."),
-      h4("Khalifa Al-Maslamani"),
-      h6(""),
-      h4("Kyryll Keydanskyy"),
-      h6(""),
-      h4("Igor Podgorny"),
-      h6("")
+      p("This project is brought to you by a group of Univeristy of Washington
+        students enrolled in Info201.",
+        br(),
+        h3(" Our team members:"),
+        h4("Jiafei Li"),
+        "Jiafei is a senior student pursuing Psychology and minoring in
+        Infomatics.", br(),
+        br(),
+        h4("Erica Tan"),
+        "Erica is a senior student pursuing Sociolgy and minoring in
+        Infomatics.", br(),
+        br(),
+        h4("Khalifa Al-Maslamani"),
+        "",
+        h4("Kyryll Keydanskyy"),
+        "Kyryll is junior pursuing Biochemistry",
+        br(), br(),
+        h4("Igor Podgorny"),
+        "Igor is majoring in Geography with a focus on Geography Information
+        Systems and a minor in Informatics"
+        )
     )
 ))
