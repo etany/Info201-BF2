@@ -7,6 +7,7 @@ library(dplyr)
 library(ggplot2)
 library(plotly)
 library(tidyr)
+library(DT)
 
 # Read in McDonald's data
 mcd_df <- read.csv("./data/mcd35.csv", stringsAsFactors = F)
