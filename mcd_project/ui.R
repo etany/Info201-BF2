@@ -191,7 +191,7 @@ shinyUI(navbarPage(theme = shinytheme("united"),
     # Tab page four
     tabPanel(
       # Tab label
-      "tabFour",
+      "Table for McDonalds' items",
       # Application title
       titlePanel(title=div(tags$img(src = "logo.png", height = "35px"),
                            "Table for McDonald's items")),
@@ -212,12 +212,12 @@ shinyUI(navbarPage(theme = shinytheme("united"),
     # Tab page five: about tab
     tabPanel(
       # Tab label
-      "about",
+      "About Us",
       # Application title
       titlePanel("About us"),
       hr(),
-      h2("This project is brought to you by a group of Univeristy of Washington students enrolled in Info201."),
-      h3(" Our team members include: "),
+      h3("This project is brought to you by a group of Univeristy of Washington students enrolled in Info201."),
+      h4(" Our team members include: "),
       h4("Jiafei Li"),
       h6( "Jiafei is a senior student pursuing Sociolgy and minoring in Infomatics." ),
       h4("Erica Tan"),
@@ -227,7 +227,6 @@ shinyUI(navbarPage(theme = shinytheme("united"),
       h4("Kyryll Keydanskyy"),
       h6(""),
       h4("Igor Podgorny"),
-      h6(""),
-      p(em("This project is in the process of being built"))
+      h6("")
     )
 ))
