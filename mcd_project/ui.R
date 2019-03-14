@@ -2,10 +2,11 @@
 # Group BF2 Final Project
 
 library(shiny)
+library(shinythemes)
 library(dplyr)
 library(ggplot2)
-library(shinythemes)
 library(plotly)
+library(tidyr)
 
 # Read in McDonald's data
 mcd_df <- read.csv("./data/mcd35.csv", stringsAsFactors = F)
@@ -38,8 +39,8 @@ dv_nutr_cats <- c("Calories" = "dvCAL",
 all_menu_items <- unique(mcd_df$"Item")
 
 # Define UI
-shinyUI(navbarPage(
-  
+shinyUI(navbarPage(theme = shinytheme("united"),
+
 # Define UI for application that draws a histogram
     # App title
     "McDonald's Nutritional Information",
@@ -185,47 +186,49 @@ shinyUI(navbarPage(
           plotOutput("scatter")
         )
       )
+    ),
+
+    # Tab page four
+    tabPanel(
+      # Tab label
+      "tabFour",
+      # Application title
+      titlePanel(title=div(tags$img(src = "logo.png", height = "35px"),
+                           "Table for McDonald's items")),
+
+
+      # Create a new Row in the UI for selectInputs
+      fluidRow(
+        column(3, selectInput("category",
+                              "Category:",
+                              c("All", unique(as.character(category))
+                                )
+                             )
+               )
+      ),
+
+      DT::dataTableOutput("table")
+      ),
+
+    # Tab page five: about tab
+    tabPanel(
+      # Tab label
+      "about",
+      # Application title
+      titlePanel("About us"),
+      hr(),
+      h2("This project is brought to you by a group of Univeristy of Washington students enrolled in Info201."),
+      h3(" Our team members include: "),
+      h4("Jiafei Li"),
+      h6( "Jiafei is a senior student pursuing Sociolgy and minoring in Infomatics." ),
+      h4("Erica Tan"),
+      h6( "Erica is a senior student pursuing Sociolgy and minoring in Infomatics."),
+      h4("Khalifa Al-Maslamani"),
+      h6(""),
+      h4("Kyryll Keydanskyy"),
+      h6(""),
+      h4("Igor Podgorny"),
+      h6(""),
+      p(em("This project is in the process of being built"))
     )
-
-    # # Tab page four
-    # tabPanel(
-    #   # Tab label
-    #   "tabFour",
-    #   # Application title
-    #   titlePanel("panelTitle"),
-    # 
-    #   # Sidebar
-    #   sidebarLayout(
-    #     sidebarPanel(
-    #       # Sidebar code goes here
-    #     ),
-    # 
-    #     # Shows graphic in main panel of tab
-    #     mainPanel(
-    #       plotOutput("fourthPlot")
-    #     )
-    #   )
-    # ),
-
-    # # Tab page five: about tab
-    # tabPanel(
-    #   # Tab label
-    #   "about",
-    #   # Application title
-    #   titlePanel("About us"),
-    #   hr(),
-    #   h2("This project is brought to you by a group of Univeristy of Washington students enrolled in Info201."),
-    #   h3(" Our team members include: "),
-    #   h4("Jiafei Li"),
-    #   h6( "Jiafei is a senior student pursuing Sociolgy and minoring in Infomatics." ),
-    #   h4("Erica Tan"),
-    #   h6( "Erica is a senior student pursuing Sociolgy and minoring in Infomatics."),
-    #   h4("Khalifa Al-Maslamani"),
-    #   h6(""),
-    #   h4("Kyryll Keydansky"),
-    #   h6(""),
-    #   h4("Igor Podgorny"),
-    #   h6(""),
-    #   p(em("This project is in the process of being built"))
-    # )
 ))

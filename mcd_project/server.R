@@ -2,9 +2,12 @@
 # Group BF2 Final Project
 
 library(shiny)
+library(shinythemes)
 library(dplyr)
 library(ggplot2)
 library(plotly)
+library(tidyr)
+
 #source("page_3_Khalifa/plot_by_fat.R")
 
 # Read in McDonald's data
@@ -122,9 +125,12 @@ shinyServer(function(input, output) {
     return(p)
   })
 
-  # output$fourthPlot <- renderPlot({
-  #   # Make a function in a separate file in scripts folder and call it here.
-  # })
+  output$table <- DT::renderDataTable(DT::datatable({
+    if (input$category != "All") {
+      date <- mcd_df[mcd_df$Category == input$category,]
+    }
+    data <- mcd_df
+  }))
 
 })
 
