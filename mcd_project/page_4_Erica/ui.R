@@ -14,6 +14,13 @@ fluidPage( theme = shinytheme("united"),
   titlePanel(title=div(tags$img(src = "logo.png", height = "35px"), 
              "Table for McDonald's items")),
   
+  sidebarLayout(
+    sidebarPanel(
+      sliderInput('cal', label = "Cal", min=cal_range[1], 
+                  max=cal_range[2], value=cal),
+      sliderInput('fat', label = "Fat", min=fat_range[1], 
+      max=fat_range[2], value=fat)
+      )),
   
   # Create a new Row in the UI for selectInputs
   fluidRow(
@@ -23,7 +30,7 @@ fluidPage( theme = shinytheme("united"),
     )
   ),
   
-  DT::dataTableOutput("table")
+  DT::dataTableOutput("table") 
 )
   
   # Create a new row for the table.
