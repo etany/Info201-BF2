@@ -46,7 +46,6 @@ all_menu_items <- unique(mcd_df$"Item")
 
 # Define McDonald's UI
 shinyUI(fluidPage(
-  # includeHTML("styles.html"),
   includeCSS("styles.css"),
   navbarPage(
 
