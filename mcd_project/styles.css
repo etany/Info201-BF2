@@ -1,0 +1,70 @@
+.well {
+  color: black;
+}
+
+body {
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 15px;
+    line-height: 1.42857143;
+    color: #222222;
+    background-color: #ffffff;
+    padding: auto;
+}
+
+p.ex1 {
+  max-width: 150px;
+}
+
+h1 {
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+h2 {
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+h3 {
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+h4 {
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+h5 {
+  font-family: Arial, Helvetica, sans-serif;
+  color: white;
+}
+
+h6 {
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+.container-fluid {
+  font-family: Arial, Helvetica, sans-serif;
+  width: 100%;
+  padding-right: 10px;
+  padding-left: 10px;
+  margin-right: auto;
+  margin-left: auto;
+  color: black; 
+}
+
+.navbar-default {
+  font-family: Arial, Helvetica, sans-serif;
+  background-color: #e95420;
+  border-color: #d34615;
+  color: white;
+}
+
+.navbar-nav li a:hover, .navbar-nav > .active > a {
+color: white !important;
+background-color:#4b4b4b76 !important;
+background-image: none !important;
+}
+
+.navbar-default .navbar-brand {
+  font-family: Arial, Helvetica, sans-serif;
+  font-size: 5px;
+  color: white;
+}

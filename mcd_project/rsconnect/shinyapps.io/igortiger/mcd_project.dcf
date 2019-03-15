@@ -5,8 +5,9 @@ account: igortiger
 server: shinyapps.io
 hostUrl: https://api.shinyapps.io/v1
 appId: 791164
-bundleId: 1940838
+bundleId: 1941746
 url: https://igortiger.shinyapps.io/mcd_project/
-when: 1552601783.66764
+when: 1552636133.45592
 asMultiple: FALSE
 asStatic: FALSE
+ignoredFiles: .Rapp.history|.RData|styles.html|plot_2_kyryll/kyryll_app.R|plot_2_kyryll/kyryll_server.R|plot_2_kyryll/kyryll_ui.r|www/bootstrap.css|www/bootstrap.min.css|page_3_Khalifa|page_4_Erica

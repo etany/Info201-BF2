@@ -9,6 +9,7 @@ library(plotly)
 library(tidyr)
 library(DT)
 library(lintr)
+library(styler)
 
 # Read in McDonald's data
 mcd_df <- read.csv("./data/mcd35.csv", stringsAsFactors = F)
@@ -33,15 +34,25 @@ all_menu_items <- unique(mcd_df$"Item")
 # Define server logic required to draw a histogram
 shinyServer(function(input, output) {
 
-  output$firstPlot <- renderPlotly({
+  output$first_plot <- renderPlotly({
     # Make a function in a separate file in scripts folder and call it here.
-    selected <- mcd_df %>% filter(Category == as.character(input$cat_var))
-    plot <- plot_ly(selected, x = ~ (get(input$x_nutr_all)), y = ~Item,
-                    type = "scatter") %>%
-      layout(xaxis = list(title = input$x_nutr_all, tickfont = list(size = 5)),
-             yaxis = list(title = "", tickfont = list(size = 5)),
+    selected <- mcd_df %>%
+      filter(Category == as.character(input$cat_var))
+    plot <- plot_ly(selected,
+                    x = ~ (get(input$x_nutr_all)),
+                    y = ~Item,
+                    type = "scatter"
+                    ) %>%
+      layout(xaxis = list(title = input$x_nutr_all,
+                          tickfont = list(size = 5)
+                          ),
+             yaxis = list(title = "",
+                          tickfont = list(size = 5)
+                          ),
              height = 600)
-    plot
+
+    return(plot)
+
   })
 
   filtered_dv <- reactive({
@@ -81,7 +92,9 @@ shinyServer(function(input, output) {
              dv = sub("dvFBR", "Fiber", dv),
              dv = sub("dvPRO", "Protein", dv)
       )
-    data_dv
+
+    return(data_dv)
+
   })
 
   # Creating the plot
@@ -93,27 +106,41 @@ shinyServer(function(input, output) {
                                            "Greater than the daily
                                            recomended value",
                                            "Below the daily
-                                           recomended value"),
+                                           recomended value"
+                                           ),
                              text = paste0("For one serving of the ", Item,
                                            ", its \n", dv,  " accounted for ",
                                            dvvalue, "% of the daily
-                                           suggested amount"))) +
+                                           suggested amount"
+                                           )
+                             )
+               ) +
       scale_fill_manual(values = c("#00BFC4", "#F8766D")) +
       xlab("Nutritional Categories") +
       ylab("% of Daily Value*") +
       labs(fill = "Daily Nutritional Value")
     # Coverting the ggplot to an interactive plot using plotly
     ggplotly(plot, tooltip = "text")
+
   })
 
-  output$scatter <- renderPlot({
+  output$scatter_three <- renderPlot({
     # Store x values to plot
     x <- mcd_df[[input$x_nutr_fat]]
 
     # Create a ggplot scatter
-    p <- ggplot(mcd_df, aes(x = x, y = mcd_df$"Fat (g)")) +
-      geom_point(aes(col = mcd_df$"Category", size = mcd_df$"Calories")) +
-      ylim(c(min(mcd_df$"Fat (g)"), max(mcd_df$"Fat (g)"))) +
+    p <- ggplot(mcd_df,
+                aes(x = x, y = mcd_df$"Fat (g)")
+                ) +
+      geom_point(aes(
+        col = mcd_df$"Category",
+        size = mcd_df$"Calories")
+        ) +
+      ylim(
+        c(min(mcd_df$"Fat (g)"),
+          max(mcd_df$"Fat (g)")
+          )
+        ) +
       labs(
         x = input$x_nutr_fat,
         y = "Total Fat (g)",
@@ -123,10 +150,13 @@ shinyServer(function(input, output) {
         caption = "Source: McDonald's"
       ) +
       scale_y_continuous(limits = input$totalfat) +
-      theme(legend.key = element_blank(), legend.key.size = unit(11, "point")) +
+      theme(legend.key = element_blank(),
+            legend.key.size = unit(11, "point")
+            ) +
       labs(col = "Food Category", size = "Amount of Calories")
 
     return(p)
+
   })
 
   output$table <- DT::renderDataTable(DT::datatable({
@@ -134,7 +164,9 @@ shinyServer(function(input, output) {
     if (input$categ_2 != "All") {
       data <- mcd_df[mcd_df$Category == input$categ_2,]
     }
-    data
+
+    return(data)
+
   }))
 
 })
