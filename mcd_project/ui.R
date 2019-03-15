@@ -42,45 +42,18 @@ all_menu_items <- unique(mcd_df$"Item")
 
 # Define UI
 shinyUI(
-  navbarPage(
+  navbarPage(theme = shinytheme("united"),
 
 # Define UI for application that draws a histogram
     # App title
-    h1("McDonald's", br(), "Nutritional Information"),
-    tags$head(
-      tags$style(HTML("
-                      @import url('//fonts.googleapis.com/css?family=Lobster|Cabin:400,700');
-
-                      h1 {
-                      font-size: 25px;
-                      font-family: 'Lobster', cursive;
-                      font-weight: 300;
-                      line-height: 0.1;
-                      color: #dd1021;
-                      }
-
-                      "))
-      ),
+    "McDonald's Nutritional Information",
 
     # Tab page one
     tabPanel(
       # Tab label
       "Nutrition For All Items",
       # Application title
-      titlePanel(h1("Nutrition for all items")),
-      tags$head(
-        tags$style(HTML("
-                        @import url('//fonts.googleapis.com/css?family=Lobster|Cabin:400,700');
-
-                        h1 {
-                        font-family: 'Lobster', cursive;
-                        font-weight: 100;
-                        line-height: 0.2;
-                        color: #dd1021;
-                        }
-
-                        "))
-        ),
+      titlePanel("Nutrition for all items"),
 
       # Sidebar
       sidebarLayout(
@@ -238,10 +211,30 @@ shinyUI(
 
       # Create a new Row in the UI for selectInputs
       fluidRow(
-        column(3, selectInput("category",
-                              "Category:",
-                              c("All", unique(as.character("Category")))
-                             )
+        column(3,
+               selectInput(
+                 "categ_2",
+                 label = "Select a category",
+                 choices = list(
+                   "Burger" = "BURGER",
+                   "Chicken" = "CHICKEN",
+                   "Breakfast" = "BREAKFAST",
+                   "Salad" = "SALAD",
+                   "Snackside" = "SNACKSIDE",
+                   "Beverage" = "BEVERAGE",
+                   "McCafe" = "MCCAFE",
+                   "Dessert" = "DESSERT",
+                   "Condiment" = "CONDIMENT",
+                   "All Day Breakfast" = "ALLDAYBREAKFAST",
+                   "Biscuit" = "ADBISCUIT",
+                   "Muffin" = "ADBMUFFIN",
+                   "Happy Meal" = "HAPPYMEAL",
+                   "Signature" = "SIGNATURE",
+                   "McPick 2A" = "MCPICK2A",
+                   "McPick 2B" = "MCPICK2B",
+                   "McPick 2C" = "MCPICK2C"
+                 )
+               )
                )
       ),
       DT::dataTableOutput("table")
@@ -251,25 +244,61 @@ shinyUI(
       "Project Overview",
       titlePanel("Project Overview"),
       hr(),
-      p("What major questions are you seeking to answer? The major questions
-        we were seeking to answer involved helping the user analyze the list
-        of nutritional information for the McDonald’s menu and perhaps make decisions
-about what food item to consume. For instance, our interactive plots allow the user to filter through the data and organize it in an efficient manner that helps them look at a specific range of values and decide what food items fit within those restrictions. The main question we were looking to answer is: what food item should we recommend our user consume from the list of McDonald’s food items?
-        Our first interactive plot gives the user an overview of all the nutritional information for each category of food. The user is able to select a nutritional category, and plot it against a specific food category to look at all the menu items that fall under that category.
-        Our second interactive plot allows a user to compare the nutritional information for each item and category to the recommended FDA daily values, visually and clearly identifying those nutritional categories for a particular item which exceed the daily recommended value.
-        The third interactive plot allows users to select another nutritional category to be plotted against fat. The user is also able to filter through a range of values for the y-variable and order to look at a specific set of information for each category. This plot is useful for those wanting to look at a specified range of information and decide which food categories are more nutritional.
-        The final graphic provides an alternate method for a user to select an item to eat while at McDonalds. If they are for example aiming to reduce their cholesterol intake, they can easily filter items by “least amount of cholesterol”, and then pick an item from a particular food group.
+      p(h3("What major questions are you seeking to answer?"), "The major
+        questions we were seeking to answer involved helping the user analyze
+        the list of nutritional information for the McDonald’s menu and perhaps
+        make decisions about what food item to consume. For instance, our
+        interactive plots allow the user to filter through the data and
+        organize it in an efficient manner that helps them look at a specific
+        range of values and decide what food items fit within those
+        restrictions. The main question we were looking to answer is: what
+        food item should we recommend our user consume from the list of
+        McDonald’s food items? Our first interactive plot gives the user an
+        overview of all the nutritional information for each category of food.
+        The user is able to select a nutritional category, and plot it against
+        a specific food category to look at all the menu items that fall under
+        that category. Our second interactive plot allows a user to compare
+        the nutritional information for each item and category to the
+        recommended FDA daily values, visually and clearly identifying those
+        nutritional categories for a particular item which exceed the daily
+        recommended value. The third interactive plot allows users to select
+        another nutritional category to be plotted against fat. The user is
+        also able to filter through a range of values for the y-variable and
+        order to look at a specific set of information for each category.
+        This plot is useful for those wanting to look at a specified range
+        of information and decide which food categories are more nutritional.
+        The final graphic provides an alternate method for a user to select
+        an item to eat while at McDonalds. If they are for example aiming to
+        reduce their cholesterol intake, they can easily filter items by “least
+        amount of cholesterol”, and then pick an item from a particular food
+        group.",
 
-        What data will you use to answer those questions?
-        In order to analyze the nutritional information of McDonalds items, we used several sources of data. Primarily, we used the available nutrition information from the McDonalds website, which listed the calories, as well as other nutritional categories such as fiber, protein and sodium levels for each item on the menu. This data was collected from a repository on GitHub, where a user collected the original data from the McDonalds website.
+        h3("What data will you use to answer those questions?"),
+        "In order to analyze the nutritional information of McDonalds items,
+        we used several sources of data.", br(),
+        "Primarily, we used the available
+        nutrition information from the McDonalds website, which listed the
+        calories, as well as other nutritional", br(), "categories such as
+        fiber, protein and sodium levels for each item on the menu.", br(),
+        "This data was collected from a repository on GitHub, where a user
+        collected the original data from the McDonalds website.", br(),
+        "In order to compare the nutritional information for each item to the
+        daily recommended value, we used data from the FDA,", br(),
+        "where the daily recommended nutritional values were supplied
+        based on the latestscientific studies. These daily values", br(),
+        "were Based on 2,000 Calorie Intake for Adults and Children 4 or
+        More Years of Age.", br(), br(),
 
-        In order to compare the nutritional information for each item to the daily recommended value, we used data from the FDA, where the daily recommended nutritional values were supplied based on the latest scientific studies. These daily values were Based on 2,000 Calorie Intake for Adults and Children 4 or More Years of Age.
-
-        Source McDonalds https://www.mcdonalds.com/us/en-us/about-our-food/nutrition-calculator.html
-        Source GitHub https://github.com/pffy/data-mcdonalds-nutritionfacts
-        Source FDA Daily Values https://www.fda.gov/ICECI/Inspections/InspectionGuides/ucm114098.htm#ATTACHMENT_8")
-
-    )
+      a("Source McDonalds",
+          href = "https://www.mcdonalds.com/us/en-us/about-our-food/
+        nutrition-calculator.html"), br(), br(),
+      a("Source GitHub", br(), br(),
+          href = "https://github.com/pffy/data-mcdonalds-nutritionfacts"),
+      a("FDA Source",
+          href = "https://www.fda.gov/ICECI/Inspections/InspectionGuides/
+        ucm114098.htm#ATTACHMENT_8")
+        )
+    ),
 
     # Tab page five: about tab
     tabPanel(
@@ -300,6 +329,6 @@ about what food item to consume. For instance, our interactive plots allow the u
         h4("Igor Podgorny"),
         "Igor is majoring in Geography with a focus on Geography ", br(),
         "Information Systems while aslo pursuing a minor in Informatics"
-        ),
+        )
     )
 ))

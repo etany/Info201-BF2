@@ -8,6 +8,7 @@ library(ggplot2)
 library(plotly)
 library(tidyr)
 library(DT)
+library(lintr)
 
 # Read in McDonald's data
 mcd_df <- read.csv("./data/mcd35.csv", stringsAsFactors = F)
@@ -37,7 +38,7 @@ shinyServer(function(input, output) {
     selected <- mcd_df %>% filter(Category == as.character(input$cat_var))
     plot <- plot_ly(selected, x = ~ (get(input$x_nutr_all)), y = ~Item,
                     type = "scatter") %>%
-      layout(xaxis = list(title = "", tickfont = list(size = 5)),
+      layout(xaxis = list(title = input$x_nutr_all, tickfont = list(size = 5)),
              yaxis = list(title = "", tickfont = list(size = 5)),
              height = 600)
     plot
@@ -128,10 +129,11 @@ shinyServer(function(input, output) {
   })
 
   output$table <- DT::renderDataTable(DT::datatable({
-    if (input$category != "All") {
-      date <- mcd_df[mcd_df$Category == input$category,]
-    }
     data <- mcd_df
+    if (input$categ_2 != "All") {
+      data <- mcd_df[mcd_df$Category == input$categ_2,]
+    }
+    data
   }))
 
 })

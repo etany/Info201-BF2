@@ -1,0 +1,12 @@
+name: mcd_project
+title: mcd_project
+username:
+account: igortiger
+server: shinyapps.io
+hostUrl: https://api.shinyapps.io/v1
+appId: 791164
+bundleId: 1940838
+url: https://igortiger.shinyapps.io/mcd_project/
+when: 1552601783.66764
+asMultiple: FALSE
+asStatic: FALSE
