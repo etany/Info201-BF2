@@ -28,6 +28,7 @@ mcd_df <- mcd_df %>%
          "Protein (g)" = "PRO",
          "Category" = "CATEGORY")
 
+# Labels for nutritional categories
 dv_nutr_cats <- c("Calories" = "dvCAL",
                   "Fat" = "dvFAT",
                   "Saturated Fat" = "dvSFAT",
@@ -40,11 +41,10 @@ dv_nutr_cats <- c("Calories" = "dvCAL",
 
 all_menu_items <- unique(mcd_df$"Item")
 
-# Define UI
+# Define McDonald's UI
 shinyUI(
   navbarPage(theme = shinytheme("united"),
 
-# Define UI for application that draws a histogram
     # App title
     "McDonald's Nutritional Information",
 
@@ -52,13 +52,11 @@ shinyUI(
     tabPanel(
       # Tab label
       "Nutrition For All Items",
-      # Application title
+      # Page header
       titlePanel("Nutrition for all items"),
-
-      # Sidebar
       sidebarLayout(
         sidebarPanel(
-          # Sidebar code goes here
+          # Select nutritional categories from mcd_df
           selectInput(
             inputId = "x_nutr_all",
             label = "Select a nutrition",
@@ -76,6 +74,7 @@ shinyUI(
             )
           ),
 
+          # Select food category to compare w/nutritional info
           selectInput(
             "cat_var",
             label = "Select a category",
@@ -101,7 +100,7 @@ shinyUI(
           )
         ),
 
-        # Shows graphic in main panel of tab
+        # Shows interactive scatter plot on main panel
         mainPanel(
            plotlyOutput("firstPlot"), width = 12, height = 20
         )
@@ -110,11 +109,12 @@ shinyUI(
 
     # Tab page two
     tabPanel(
+
       # Tab label
       "Daily Values %",
-      # Application title
+
+      # Page title
       titlePanel("Select Data"),
-      # Sidebar
       sidebarLayout(
         sidebarPanel(
           selectInput("item_selected",
@@ -128,7 +128,7 @@ shinyUI(
                          selected = dv_nutr_cats[c(1, 2, 6)]
                          )
         ),
-        # Shows graphic in main panel of tab
+        # Shows bar plot in main panel of tab
         mainPanel(
           h3("Comparison Between the Nutritional Value of
              McDonalds Items and the Suggested Daily Value*"
@@ -149,20 +149,20 @@ shinyUI(
           )
         )
     ),
-    # Page three plot nutrition by total fat
+
+    # Tab page three
     tabPanel(
+
       # Tab label
       "Total Fat vs. Nutrition",
-      # Add a titlePanel to your tab
-      titlePanel("Select Data"),
 
-      # Create a sidebar layout for this tab (page)
+      titlePanel("Select Data"),
       sidebarLayout(
 
-        # Create a sidebarPanel for your controls
+        # SidebarPanel for controls
         sidebarPanel(
 
-          # Make a sliderInput widget for looking at a specified total fat range
+          # Widget for looking at a specified total fat range
           sliderInput(inputId = "totalfat",
                       label = "Select Total Fat Range",
                       min = min(mcd_df$"Fat (g)"),
@@ -172,7 +172,7 @@ shinyUI(
                                 )
                       ),
 
-          # Add dropdown to select nutrition variable for x axis
+          # Dropdown to select nutrition variable for x axis
           selectInput(
             inputId = "x_nutr_fat",
             label = "Choose Nutrition Variable to Plot Against Total Fat",
@@ -189,7 +189,7 @@ shinyUI(
           )
         ),
 
-        # Display scatter plot on main panel
+        # Display scatter plot of nutrition by total fat on main panel
         mainPanel(
           plotOutput("scatter")
         )
@@ -198,16 +198,17 @@ shinyUI(
 
     # Tab page four
     tabPanel(
+
       # Tab label
       "Table For McDonalds' Items",
-      # Application title
+
+      # Page title with img. logo
       titlePanel(title = div(tags$img(src = "logo.png",
                                       height = "35px"
                                       ),
                              "Table for McDonald's items"
                              )
                  ),
-
 
       # Create a new Row in the UI for selectInputs
       fluidRow(
@@ -216,6 +217,7 @@ shinyUI(
                  "categ_2",
                  label = "Select a category",
                  choices = list(
+                   "All",
                    "Burger" = "BURGER",
                    "Chicken" = "CHICKEN",
                    "Breakfast" = "BREAKFAST",
@@ -240,8 +242,13 @@ shinyUI(
       DT::dataTableOutput("table")
       ),
 
+    # Tab five
     tabPanel(
+
+      # Tab title
       "Project Overview",
+
+      # Page title
       titlePanel("Project Overview"),
       hr(),
       p(h3("What major questions are you seeking to answer?"), "The major
@@ -300,11 +307,13 @@ shinyUI(
         )
     ),
 
-    # Tab page five: about tab
+    # Tab page six
     tabPanel(
+
       # Tab label
       "About Us",
-      # Application title
+
+      # Page title
       titlePanel("About us"),
       hr(),
       p("This project is created by a group of Univeristy of Washington
