@@ -123,7 +123,8 @@ shinyServer(function(input, output) {
         caption = "Source: McDonald's"
       ) +
       scale_y_continuous(limits = input$totalfat) +
-      theme(legend.key = element_blank(), legend.key.size = unit(11, "point"))
+      theme(legend.key = element_blank(), legend.key.size = unit(11, "point")) +
+      labs(col = "Food Category", size = "Amount of Calories")
 
     return(p)
   })
